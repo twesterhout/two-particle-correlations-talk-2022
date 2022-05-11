@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .big { font-size: 140%; }
+      .small { font-size: 70%; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .middle {
+        position: relative;
+        top: 50%;
+        /*transform: translateY(10%);*/
+      }
+      .float-left50 { float: left; width: 50%; }
+      .float-right50 { float: right; width: 50%; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+layout: true
+background-image: url(assets/img/ru_logo_a4_imm_eng_1.png)
+background-position: 85% 98%
+background-size: 25%
+
+---
+
+class: center, middle
+
+# Making real-space Random Phase Approximation fast
+
+.big[
+Tom Westerhout<br>
+18 May 2022]
+
+---
+
+# What is real-space RPA?
+
+- Also known as Lindhard function.
+- A model for computing screening properties, i.e. \\(\Pi(\omega)\\) and \\(\varepsilon(\omega)\\).
+
+.center[
+  <img src="assets/img/eq_rpa.png" width="75%">
+]
+
+The rest is trivial: \\(\varepsilon(\omega) = 1 - U \Pi(\omega)\\),
+\\(W(\omega) = \varepsilon(\omega)^{-1} U\\), etc.
+
+---
+
+.center[
+  <img src="assets/img/img_goal.png" width="75%">
+
+  General techniques that are applicable to other methods as well.
+]
+
+---
+
+# Naive approach
+
+.center[
+$$
+\Pi\_{ij}(\omega) = 2 \cdot \sum\_{ab} \psi^\*\_{ia} \psi\_{ib} \psi^\*\_{jb} \psi\_{ja} \underbrace{\frac{f(E\_a) - f(E\_b)}{E\_a - E\_b + \hbar\omega + i\eta}}\_{G\_{ab}}
+$$
+]
+
+```julia
+for i ∈ 1:N
+  for j ∈ 1:N
+    acc = 0
+    for a ∈ 1:N
+      for b ∈ 1:N
+        acc += conj(ψ[i, a]) * ψ[i, b] * conj(ψ[j, b]) * ψ[j, a] * G[a, b]
+      end
+    end
+    Π[i, j] = 2 * acc
+  end
+end
+```
+
+.center[
+  Complexity: \\(\mathcal{O}(N^4)\\)
+]
+
+
+---
+
+# Why bother with real space?
+
+- Many interesting systems with broken translational invariance.
+
+<img src="assets/img/img_broken_symmetry.png" width="90%">
+
+---
+
+# But if you had just used Fortran 🤔 ...
+
+- or C/C++/Rust/Julia/your favorite language — ❌<br><br>
+- applicable to other programming languages — ✅<br><br>
+- applicable to other numerical methods — ✅
+
+---
+
+# SIMD instructions
+
+- **S**ingle **I**nstruction **M**ultiple **D**ata
+
+---
+
+# BLAS is fast, right?
+
+$$
+\begin{aligned}
+\Pi\_{ij}(\omega)
+  &= 2 \cdot \sum\_{ab} \psi^\*\_{ia} \psi\_{ib} \psi^\*\_{jb} \psi\_{ja} G\_{ab}
+  = 2 \cdot \sum\_{ab} \underbrace{\psi^\*\_{ia} \psi\_{ja}}\_{v^\dagger\_a} G\_{ab} \underbrace{\psi\_{ib} \psi^\*\_{jb}}\_{v\_b} \\\\
+  &= 2 \cdot v^\dagger (G v) \,.
+\end{aligned}
+$$
+
+.float-left50[
+$$
+\mathrm{time}(N) = \alpha + \beta \cdot N^4 \,.
+$$
+
+- About 5.5 times reduction in \\( \beta \\).
+- All time is spent in `GEMV` (**GE**neral **M**atrix-**V**ector product).
+]
+.float-right50[
+<img src="assets/img/02_gemv.png" width="90%">
+]
+
+---
+
+# But matrix-vector produts are slow!
+
+.center[
+<img src="assets/img/03_gemv_vs_gemm.png" width="80%">
+]
+
+---
+
+# Memory-bound vs. compute-bound
+
+---
+
+# Batching to the rescue
+
+---
+
+# GPUs are good at matrix-multiplication aren't they?
+
+---
+
+# Are we really doing the minimal number of operations?
+
+- exploiting sparsity of G
+- splitting real and complex parts
+
+---
+
+# Contributions
+
+    </textarea>
+    <script src="third_party/remark-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+    <script type="text/javascript">
+      // Setup MathJax
+      MathJax.Hub.Config({
+        tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        }
+      });
+
+      MathJax.Hub.Configured();
+
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
