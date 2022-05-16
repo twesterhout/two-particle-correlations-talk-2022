@@ -28,6 +28,7 @@
       .float-left30 { float: left; width: 30%; }
       .float-left40 { float: left; width: 40%; }
       .float-left50 { float: left; width: 50%; }
+      .float-left60 { float: left; width: 60%; }
       .float-right40 { float: right; width: 40%; }
       .float-right50 { float: right; width: 50%; }
       .float-right60 { float: right; width: 60%; }
@@ -39,7 +40,7 @@
 
 layout: true
 background-image: url(assets/img/ru_logo_a4_imm_eng_1.png)
-background-position: 85% 98%
+background-position: 90% 98%
 background-size: 25%
 
 ---
@@ -119,11 +120,13 @@ end
 - applicable to other programming languages — ✅<br><br>
 - applicable to other numerical methods — ✅
 
+<!--
 ---
 
 # SIMD instructions
 
 - **S**ingle **I**nstruction **M**ultiple **D**ata
+-->
 
 ---
 
@@ -217,7 +220,7 @@ $$
 
 ---
 
-# GPUs are good at matrix-multiplication, aren't they?
+# GPUs are good at matrix multiplication, aren't they?
 
 .float-left30[
 $$
@@ -231,13 +234,27 @@ Yet another **24** times reduction in \\( \beta \\).
 <img src="assets/img/05_gpu.png" width="90%">
 ]
 
-
 ---
 
 # Are we really doing the minimal number of operations?
 
-- exploiting sparsity of G
-- splitting real and complex parts
+$$
+G\_{ab} = \frac{f(E\_a) - f(E\_b)}{E\_a - E\_b + \hbar\omega + i\eta}\,,\;\;\;\;\;
+f(E) = \frac{1}{e^{\beta (E - \mu)} + 1}
+$$
+
+.float-left60[
+- \\( f(E\_a) \approx f(E\_b) \approx 0 \\) when \\(E\_a\,,E\_b \gg \mu\\).
+- \\( f(E\_a) \approx f(E\_b) \approx 1 \\) when \\(E\_a\,,E\_b \ll \mu\\).
+
+.center[
+  <img src="assets/img/img_sparse.png" width="30%">
+]
+]
+
+.float-right40[
+<img src="assets/img/06_sparse.png" width="100%">
+]
 
 ---
 
@@ -256,7 +273,9 @@ Yet another **24** times reduction in \\( \beta \\).
 
       MathJax.Hub.Configured();
 
-      var slideshow = remark.create();
+      var slideshow = remark.create({
+        slideNumberFormat: '%current%',
+      });
     </script>
   </body>
 </html>
