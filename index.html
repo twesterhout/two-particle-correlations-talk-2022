@@ -25,8 +25,13 @@
         top: 50%;
         /*transform: translateY(10%);*/
       }
+      .float-left30 { float: left; width: 30%; }
+      .float-left40 { float: left; width: 40%; }
       .float-left50 { float: left; width: 50%; }
+      .float-right40 { float: right; width: 40%; }
       .float-right50 { float: right; width: 50%; }
+      .float-right60 { float: right; width: 60%; }
+      .float-right70 { float: right; width: 70%; }
     </style>
   </head>
   <body>
@@ -150,20 +155,82 @@ $$
 # But matrix-vector produts are slow!
 
 .center[
-<img src="assets/img/03_gemv_vs_gemm.png" width="80%">
+<img src="assets/img/03_gemv_vs_gemm.png" width="60%">
 ]
 
 ---
 
-# Memory-bound vs. compute-bound
+# Memory bound vs. compute bound
+
+.center[
+<img src="assets/img/03_gemv_vs_gemm.png" width="60%">
+]
+
+- Matrix-vector
+  ➡ \\(\mathcal{O}(N^2)\\) memory &amp; \\(\mathcal{O}(N^2)\\) compute
+  ➡ memory bound.
+- Matrix-matrix
+  ➡ \\(\mathcal{O}(N^2)\\) memory &amp; \\(\mathcal{O}(N^3)\\) compute
+  ➡ compute bound.
 
 ---
 
 # Batching to the rescue
 
+$$
+\Pi\_{ij}(\omega)
+  = 2 \cdot \sum\_{ab} \underbrace{\psi^\*\_{ia} \psi\_{ja}}\_{v^\dagger\_a} G\_{ab} \underbrace{\psi\_{ib} \psi^\*\_{jb}}\_{v\_b}
+  = 2 \cdot v^\dagger (G v) \,.
+$$
+
+- \\(\Pi_{ij}(\omega)\\) element
+  ➡ \\(\mathcal{O}(N^2)\\) mem. &amp; \\(\mathcal{O}(N^2)\\) compute
+  ➡ memory bound 😞<br><br>
+- \\(\Pi(\omega)\\) matrix
+  ➡ \\(\mathcal{O}(N^2)\\) mem. &amp; \\(\mathcal{O}(N^4)\\) compute
+  ➡ compute bound 😃<br><br>
+
 ---
 
-# GPUs are good at matrix-multiplication aren't they?
+# Batching to the rescue
+
+.center[
+<img src="assets/img/img_batching.png" width="85%">
+]
+
+---
+
+# Batching to the rescue
+
+.float-left30[
+$$
+\mathrm{time}(N) = \alpha + \beta \cdot N^4 \,.
+$$
+]
+
+.float-right70[
+<img src="assets/img/04_batched.png" width="90%">
+]
+
+- Another **44** times reduction in \\( \beta \\).
+- All time is spent in `GEMM` (**GE**neral **M**atrix-**M**atrix product).
+
+---
+
+# GPUs are good at matrix-multiplication, aren't they?
+
+.float-left30[
+$$
+\mathrm{time}(N) = \alpha + \beta \cdot N^4 \,.
+$$
+
+Yet another **24** times reduction in \\( \beta \\).
+]
+
+.float-right70[
+<img src="assets/img/05_gpu.png" width="90%">
+]
+
 
 ---
 
