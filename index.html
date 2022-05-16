@@ -120,14 +120,6 @@ end
 - applicable to other programming languages — ✅<br><br>
 - applicable to other numerical methods — ✅
 
-<!--
----
-
-# SIMD instructions
-
-- **S**ingle **I**nstruction **M**ultiple **D**ata
--->
-
 ---
 
 # BLAS is fast, right?
@@ -258,7 +250,29 @@ $$
 
 ---
 
+# Final touches
+
+- \\(G_{ab}\\) is complex, but \\(\psi\\) is often real ➡ ×2
+- GPUs are better at low-precision arithmetic ➡ ×2-32 (depends on GPU)
+
+.center[
+<img src="assets/img/img_final.png" width="80%">
+]
+
+---
+
 # Contributions
+
+- \\(\Pi(\omega) \\) and \\(\varepsilon(\omega)\\) in real space — no approximations beyond RPA, no symmetries assumed.
+- Transformed a memory bound implementation into a compute bound.
+- Ported to Graphics Processing Units (GPUs).
+- Exploited the sparsity of \\(G_{ab}\\).
+
+.center[
+<img src="assets/img/img_final.png" width="60%">
+]
+
+__Example:__ For 10000 sites, we got around 20000 times speedup compared to the naive implementation.
 
     </textarea>
     <script src="third_party/remark-latest.min.js"></script>
