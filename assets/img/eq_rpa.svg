@@ -3,12 +3,15 @@
 
 <svg
    width="573.68622"
-   height="224.42003"
-   viewBox="0 0 151.78781 59.377799"
+   height="259.62625"
+   viewBox="0 0 151.78781 68.692779"
    version="1.1"
    id="svg21499"
    sodipodi:docname="eq_rpa.svg"
    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   inkscape:export-filename="/home/tom/src/two-particle-correlations-talk-2022/assets/img/eq_rpa.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,13 +27,13 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.1452094"
-     inkscape:cx="194.28761"
-     inkscape:cy="311.29677"
-     inkscape:window-width="1920"
-     inkscape:window-height="1177"
-     inkscape:window-x="0"
-     inkscape:window-y="383"
+     inkscape:zoom="2.2904188"
+     inkscape:cx="305.40266"
+     inkscape:cy="152.15558"
+     inkscape:window-width="2560"
+     inkscape:window-height="1417"
+     inkscape:window-x="1080"
+     inkscape:window-y="263"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      units="px"
@@ -117,7 +120,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-57.299791,-12.245649)">
+     transform="translate(-57.299791,-7.8356769)">
     <path
        style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart)"
        d="m 102.63275,55.786028 6.98051,10.607121"
@@ -312,15 +315,20 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="147.33247"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
+       x="159.5206"
        y="70.572151"
        id="text48491"><tspan
          sodipodi:role="line"
          id="tspan48489"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';stroke-width:0.264583"
-         x="147.33247"
-         y="70.572151">eigenvalues</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="159.5206"
+         y="70.572151">single-particle</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="159.5206"
+         y="75.51104"
+         id="tspan7806">eigenvalues</tspan></text>
     <g
        transform="matrix(0.727829,0,0,0.727829,57.2997,34.774)"
        ns46:version="1.2.0"
@@ -1130,15 +1138,20 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1.25;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
-       x="119.65374"
-       y="15.496596"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:1;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;stroke-width:0.264583"
+       x="131.44598"
+       y="11.263267"
        id="text54397"><tspan
          sodipodi:role="line"
-         id="tspan54395"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';stroke-width:0.264583"
-         x="119.65374"
-         y="15.496596">eigenvectors</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="131.44598"
+         y="11.263267"
+         id="tspan2092">single-particle</tspan><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;text-anchor:middle;stroke-width:0.264583"
+         x="131.44598"
+         y="16.202156"
+         id="tspan2096">eigenvectors</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart-0-61)"
        d="m 163.4075,32.762159 9.68754,-8.846386"
@@ -1146,19 +1159,19 @@
        sodipodi:nodetypes="cc" />
     <text
        xml:space="preserve"
-       style="font-size:4.93889px;line-height:1.25;font-family:'Latin Modern Roman Slanted';-inkscape-font-specification:'Latin Modern Roman Slanted';letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
+       style="font-size:4.93889px;line-height:1;font-family:'Latin Modern Roman Slanted';-inkscape-font-specification:'Latin Modern Roman Slanted';letter-spacing:0px;word-spacing:0px;stroke-width:0.264583"
        x="174.02325"
-       y="15.618911"
+       y="17.206411"
        id="text65683"><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="174.02325"
-         y="15.618911"
+         y="17.206411"
          id="tspan65685">Fermi-Dirac</tspan><tspan
          sodipodi:role="line"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:'Latin Modern Roman';-inkscape-font-specification:'Latin Modern Roman, ';text-align:center;text-anchor:middle;stroke-width:0.264583"
          x="174.02325"
-         y="21.792522"
+         y="22.145302"
          id="tspan65689">distribution</tspan></text>
   </g>
 </svg>

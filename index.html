@@ -19,12 +19,27 @@
         position: absolute;
         bottom: 3em;
       }
-      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      /*
       .middle {
+        height: 100%;
+        vertical-align: middle;
+      }
+      */
+      .container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+      .vertical-center {
         position: relative;
         top: 50%;
-        /*transform: translateY(10%);*/
+        transform: translateY(-50%);
       }
+      .vertical-center img {
+        vertical-align: middle;
+      }
+
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
       .float-left30 { float: left; width: 30%; }
       .float-left40 { float: left; width: 40%; }
       .float-left50 { float: left; width: 50%; }
@@ -49,9 +64,12 @@ class: center, middle
 
 # Making real-space Random Phase Approximation fast
 
-.big[
-Tom Westerhout<br>
-18 May 2022]
+.big[Tom Westerhout]
+
+*Theory of Condensed Matter*<br>
+*Radboud University*<br>
+
+18 May 2022
 
 ---
 
@@ -110,7 +128,7 @@ end
 
 - Many interesting systems with broken translational invariance.
 
-<img src="assets/img/img_broken_symmetry.png" width="90%">
+.center[<img src="assets/img/img_broken_symmetry.png" width="90%">]
 
 ---
 
@@ -161,16 +179,23 @@ $$
 
 # Memory bound vs. compute bound
 
-.center[
-<img src="assets/img/03_gemv_vs_gemm.png" width="60%">
-]
-
 - Matrix-vector
   ➡ \\(\mathcal{O}(N^2)\\) memory &amp; \\(\mathcal{O}(N^2)\\) compute
   ➡ memory bound.
+  ```julia
+    for i ∈ 1:N
+      for k ∈ 1:N
+        y[i] += A[i, k] * x[k]
+  ```
 - Matrix-matrix
   ➡ \\(\mathcal{O}(N^2)\\) memory &amp; \\(\mathcal{O}(N^3)\\) compute
   ➡ compute bound.
+  ```julia
+    for i ∈ 1:N
+      for j ∈ 1:N
+        for k ∈ 1:N
+          C[i, j] += A[i, k] * B[k, j]
+  ```
 
 ---
 
@@ -223,7 +248,7 @@ $$
 \mathrm{time}(N) = \alpha + \beta \cdot N^4 \,.
 $$
 
-Yet another **24** times reduction in \\( \beta \\).
+Yet another **24** times reduction in \\( \beta \\) by using a GPU.
 ]
 
 .float-right70[
@@ -249,7 +274,7 @@ $$
 ]
 
 .float-right40[
-<img src="assets/img/06_sparse.png" width="100%">
+<img src="assets/img/06_sparse_annotated.png" width="100%">
 ]
 
 ---
@@ -265,16 +290,15 @@ $$
 
 ---
 
-# Contributions
+# What have we achieved?
 
 - \\(\Pi(\omega) \\) and \\(\varepsilon(\omega)\\) in real space — no approximations beyond RPA, no symmetries assumed.
 - Transformed a memory bound implementation into a compute bound.
 - Ported to Graphics Processing Units (GPUs).
 - Exploited the sparsity of \\(G_{ab}\\).
 
-.center[
-<img src="assets/img/img_final.png" width="60%">
-]
+**Take-home message:**
+.center[<img src="assets/img/img_final.png" width="60%">]
 
 __Example:__ For 10000 sites, we got around 20000 times speedup compared to the naive implementation.
 
